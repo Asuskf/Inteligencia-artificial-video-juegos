@@ -44,7 +44,7 @@ class SwallowQLearner(object):
         if random.random() < self.epsilon_decay(self.step_num):
             action = random.choice([a for a in range(self.action_shape) ])
         else:
-            action = np.argmax(self.Q(obs).data.to(self.device).numpy())
+            action = np.argmax(self.Q(obs).data.to(self.device).cpu().numpy())
         return action
         
     def learn(self, obs, action, reward, next_obs):       
